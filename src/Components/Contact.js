@@ -1,6 +1,25 @@
 import React from 'react'
 import './stylish.css';
 
+function validate() {
+    const n = document.getElementById("name").value;
+    const e = document.getElementById("mail").value;
+    const s = document.getElementById("subject").value;
+    const m = document.getElementById("msg").value;
+
+    let r;
+    if (n === "" || e === "" || s === "" || m === "" || !isNaN(n) /*check for numbers i think?*/) {
+        //im sure theres a better way to check if four vars are empty, but im fine with it being ugly
+        r = "Please fill out all fields. No numbers in the name field.";
+    }
+    else {
+        r = `Thank you for your response, ${n}! I will respond to you shortly at ${e}`;
+    }
+    
+    //r = "test";
+    document.getElementById("response").innerHTML = r;
+}
+
 const Contact = () => {
   return (
     <div>
@@ -8,7 +27,7 @@ const Contact = () => {
         <div className="smallContainerColumn">
             <div><br />
                 <iframe title="update" style={{display:"none"}}></iframe>
-                <form id="form1" onsubmit="validate()" target="update">
+                <form id="form1" onsubmit={validate} target="update">
                     <label for="name">Name: </label> &emsp; &emsp;
                     <input type="text" id="name" /><br /><br />
 

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import './Components/stylish.css';
 import Hero from './Components/Hero.js';
@@ -10,14 +9,16 @@ import ContactInfo from './Components/ContactInfo';
 
 function App() {
   return (
-    <div className="backgr">
+    <div className="heroBack">
       <Hero />
-      <div class="bigContainer">
-        <div><Personal /></div>
-        <div><EduBackground /></div>
-        <div><Skills /></div>
-        <div><Contact /></div>
-        <div><ContactInfo /></div>
+      <div className="backgr">
+        <div class="bigContainer">
+          <div><Personal /></div>
+          <div><EduBackground /></div>
+          <div><Skills /></div>
+          <div><Contact /></div>
+          <div><ContactInfo /></div>
+        </div>
       </div>
     </div>
   );
