@@ -1,6 +1,7 @@
 import React from 'react'
 import './stylish.css';
 
+/*
 function validate() {
     const n = document.getElementById("name").value;
     const e = document.getElementById("mail").value;
@@ -8,7 +9,7 @@ function validate() {
     const m = document.getElementById("msg").value;
 
     let r;
-    if (n === "" || e === "" || s === "" || m === "" || !isNaN(n) /*check for numbers i think?*/) {
+    if (n === "" || e === "" || s === "" || m === "" || !isNaN(n) /*check for numbers i think?) {
         //im sure theres a better way to check if four vars are empty, but im fine with it being ugly
         r = "Please fill out all fields. No numbers in the name field.";
     }
@@ -16,11 +17,19 @@ function validate() {
         r = `Thank you for your response, ${n}! I will respond to you shortly at ${e}`;
     }
     
-    //r = "test";
+    r = "test";
     document.getElementById("response").innerHTML = r;
 }
+*/
 
-const Contact = () => {
+function validate(e) {
+    e.preventDefault();
+
+
+}
+
+const Contact = () => {}
+
   return (
     <div>
         <h2>CONTACT FORM</h2>
