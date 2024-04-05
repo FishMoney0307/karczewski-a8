@@ -69,6 +69,9 @@ export default function Contact () {
                 {status === 'success' &&
                     <p>Thank you for your response, {n}!</p>
                 }
+                {error !== null && 
+                    <p>{error.message}</p>
+                }
 
                 <button disabled={n.length === 0 || status === 'submitting'}>
                     Submit
@@ -84,7 +87,7 @@ function submitForm(n) {
         setTimeout(() => {
             let shouldError = n.toLowerCase() === ''
             if (shouldError) {
-                reject (new Error('Please enter a valid name and email address.'));
+                reject (new Error('Please fill out all fields.'));
             } else {
                 resolve();
             }
