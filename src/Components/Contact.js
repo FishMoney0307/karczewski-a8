@@ -1,5 +1,6 @@
 import React from 'react'
 import './stylish.css';
+import { useState } from  'react';
 
 /*
 function validate() {
@@ -22,44 +23,71 @@ function validate() {
 }
 */
 
-function validate(e) {
-    e.preventDefault();
+export default function Contact () {
+    const [n, setn] = useState('');
+    const [e, sete] = useState('');
+    const [s, sets] = useState('');
+    const [m, setm] = useState('');
+    const [error, setError] = useState(null);
+    const [status, setStatus] = useState('typing');
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        setStatus('submitting');
+        try {
+            await submitForm(n);
+            setStatus('success');
+        } catch (err) {
+            setStatus('typing');
+            setError(err);
+        }
+    }
+
+    function handleTextareaChange(e) {
+        setn(e.target.value);
+    }
 
 
-}
-
-const Contact = () => {}
-
-  return (
-    <div>
+    
+    return (
+        <>
         <h2>CONTACT FORM</h2>
-        <div className="smallContainerColumn">
-            <div><br />
-                <iframe title="update" style={{display:"none"}}></iframe>
-                <form id="form1" onsubmit={validate} target="update">
-                    <label for="name">Name: </label> &emsp; &emsp;
-                    <input type="text" id="name" /><br /><br />
+            <form onSubmit={handleSubmit}>
+                <label>Name: </label> &emsp; &emsp;
+                <input type="text" value={n} onChange={handleTextareaChange} /> <br /><br />
 
-                    <label for="email">Email: </label> &emsp; &emsp;
-                    <input type="email" id="mail" /><br /><br />
+                <label>Email: </label> &emsp; &emsp;
+                <input type="email" value={e} /> <br /><br />
+                
+                <label>Subject: </label> &emsp; &nbsp; &nbsp;
+                <input type="text" value={s} /> <br /><br />
 
-                    <label for="subject">Subject:</label> &emsp; &nbsp;&nbsp;
-                    <input type="text" id="subject" /><br /><br />
+                <label>Message: </label> &emsp; &nbsp;
+                <textarea id="mgs" value={m}></textarea>
+                <p></p>
 
-                    <label for="msg">Message:</label> &emsp;&nbsp;
-                    <textarea id="msg"></textarea>
-       
-                    <p id="response"></p>
-                </form>
-            </div>
-            <div>
-                <br />
-                <button type="submit" form="form1" value="Submit">Submit</button>
-                <br /><br />
-            </div>
-        </div> {/* end smallcontainer */}
-    </div>
-  )
+                {status === 'success' &&
+                    <p>Thank you for your response, {n}!</p>
+                }
+
+                <button disabled={n.length === 0 || status === 'submitting'}>
+                    Submit
+                </button>
+            </form>
+        </>
+    )
+
 }
 
-export default Contact
+function submitForm(n) {
+    return new Promise((resolve, reject) =>{
+        setTimeout(() => {
+            let shouldError = n.toLowerCase() === ''
+            if (shouldError) {
+                reject (new Error('Please enter a valid name and email address.'));
+            } else {
+                resolve();
+            }
+        }, 1500);
+    })
+}
