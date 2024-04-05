@@ -11,8 +11,8 @@ const EduBackground = () => {
                 <h3 className="coral">Graduated</h3>
             </div>
             <div>
-                <h2>Rowan University</h2>
-                <h3 className="coral">Current</h3>
+                <h2>Freehold High School</h2>
+                <h3 className="coral">Graduated</h3>
             </div>
             <div>
                 <h2>Rowan University</h2>

@@ -1,6 +1,6 @@
 .backgr {background-color: #666666;}
 
-.heroBack {width:100%};
+/*.heroBack {width:100%};*/
 
 html,body {height: 100%;}
 
@@ -214,6 +214,8 @@ Not certain how to do this one, does a + sign every time */
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("IMG_9392.jpg");
 
     height:300px;
+    width: 100%;
+    z-index: -2;
 
     background-position: center;
     background-repeat: no-repeat;
