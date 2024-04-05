@@ -23,6 +23,9 @@ function validate() {
 }
 */
 
+/* Stolen from the react.dev website so is it really even stolen
+    https://react.dev/learn/reacting-to-input-with-state */
+
 export default function Contact () {
     const [n, setn] = useState('');
     const [e, sete] = useState('');
@@ -44,6 +47,8 @@ export default function Contact () {
         }
     }
 
+
+    /* This makes me nauseous*/
     function handleTextareaChangeN(ev) {
         setn(ev.target.value);
     }
