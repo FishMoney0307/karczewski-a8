@@ -31,11 +31,12 @@ export default function Contact () {
     const [error, setError] = useState(null);
     const [status, setStatus] = useState('typing');
 
-    async function handleSubmit(e) {
-        e.preventDefault();
+    async function handleSubmit(ev) {
+        ev.preventDefault();
+        setError(null);
         setStatus('submitting');
         try {
-            await submitForm(n);
+            await submitForm(n, e, s, m);
             setStatus('success');
         } catch (err) {
             setStatus('typing');
@@ -43,27 +44,34 @@ export default function Contact () {
         }
     }
 
-    function handleTextareaChange(e) {
-        setn(e.target.value);
+    function handleTextareaChangeN(ev) {
+        setn(ev.target.value);
     }
-
-
+    function handleTextareaChangeE(ev) {
+        sete(ev.target.value);
+    }
+    function handleTextareaChangeS(ev) {
+        sets(ev.target.value);
+    }
+    function handleTextareaChangeM(ev) {
+        setm(ev.target.value);
+    }
     
     return (
         <>
         <h2>CONTACT FORM</h2>
             <form onSubmit={handleSubmit}>
                 <label>Name: </label> &emsp; &emsp;
-                <input type="text" value={n} onChange={handleTextareaChange} /> <br /><br />
+                <input type="text" value={n} onChange={handleTextareaChangeN} /> <br /><br />
 
                 <label>Email: </label> &emsp; &emsp;
-                <input type="email" value={e} /> <br /><br />
+                <input type="email" value={e} onChange={handleTextareaChangeE}/> <br /><br />
                 
                 <label>Subject: </label> &emsp; &nbsp; &nbsp;
-                <input type="text" value={s} /> <br /><br />
+                <input type="text" value={s} onChange={handleTextareaChangeS}/> <br /><br />
 
                 <label>Message: </label> &emsp; &nbsp;
-                <textarea id="mgs" value={m}></textarea>
+                <textarea id="mgs" value={m} onChange={handleTextareaChangeM}/>
                 <p></p>
 
                 {status === 'success' &&
@@ -82,10 +90,10 @@ export default function Contact () {
 
 }
 
-function submitForm(n) {
+function submitForm(n, e, s, m) {
     return new Promise((resolve, reject) =>{
         setTimeout(() => {
-            let shouldError = n.toLowerCase() === ''
+            let shouldError = (n === '' || e === '' || s === '' || m === '');
             if (shouldError) {
                 reject (new Error('Please fill out all fields.'));
             } else {
